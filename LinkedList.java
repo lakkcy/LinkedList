@@ -38,6 +38,29 @@ public class LinkedList{
 		temp2.next = null;
 	}
 	//Linked List Insertion Ends
+
+	// Linked List Deletion Begins
+	
+	// Deleting a key
+	public void deleteAKey(int d){
+		Node temp = head, prev = null;
+		
+		// if key is found at the beginning
+		if(temp != null && temp.data == d){
+			head = head.next;
+			return;
+		}
+		
+		while(temp!=null && temp.data != d){
+			prev = temp;
+			temp = temp.next;
+			
+		}
+		if(temp == null) return;
+		prev.next = temp.next;
+	}
+	
+	// Linked List Deletion Ends
 	public void printList(){
 		Node temp = head;
 		while(temp != null){
@@ -63,6 +86,9 @@ public class LinkedList{
 		llist.printList();
 		System.out.println("******** Inserting at the end*********");
 		llist.insertAtEnd(5);
+		llist.printList();
+		System.out.println("*********Deleting a Key************");
+		llist.deleteAKey(3);
 		llist.printList();
 		
 	}
