@@ -59,7 +59,18 @@ public class LinkedList{
 		if(temp == null) return;
 		prev.next = temp.next;
 	}
-	
+
+	public void deleteAtPosition(int pos){
+		int next = 0;
+		Node temp = head, prev = null;
+		while(pos != next){
+			prev = temp;
+			temp = temp.next;
+			next++;
+		}
+		if(temp == null) return;
+		prev.next = temp.next;
+	}	
 	// Linked List Deletion Ends
 	public void printList(){
 		Node temp = head;
@@ -89,6 +100,9 @@ public class LinkedList{
 		llist.printList();
 		System.out.println("*********Deleting a Key************");
 		llist.deleteAKey(3);
+		llist.printList();
+		System.out.println("*********Deleting at a position**********");
+		llist.deleteAtPosition(2);
 		llist.printList();
 		
 	}
