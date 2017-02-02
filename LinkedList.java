@@ -8,18 +8,18 @@ public class LinkedList{
 			next = null;
 		}
 	}
-	
+
 	//Linked List Insertion Starts
-	
+
 	//Insertion in beginning
-	
+
 	public void insertAtBeg(int d){
 		Node temp = new Node(d);
 		temp.next = head;
 		head= temp;
 	}
 	//Insertion in the middle
-	
+
 	public void insertInMiddle(Node prev_node, int d){
 		Node temp = new Node(d);
 		temp.next = prev_node.next;
@@ -27,7 +27,7 @@ public class LinkedList{
 	}
 
 	// Insert at the end
-	
+
 	public void insertAtEnd(int d){
 		Node temp = head;
 		Node temp2 = new Node(d);
@@ -40,21 +40,20 @@ public class LinkedList{
 	//Linked List Insertion Ends
 
 	// Linked List Deletion Begins
-	
+
 	// Deleting a key
 	public void deleteAKey(int d){
 		Node temp = head, prev = null;
-		
+
 		// if key is found at the beginning
 		if(temp != null && temp.data == d){
 			head = head.next;
 			return;
 		}
-		
+
 		while(temp!=null && temp.data != d){
 			prev = temp;
 			temp = temp.next;
-			
 		}
 		if(temp == null) return;
 		prev.next = temp.next;
@@ -70,12 +69,12 @@ public class LinkedList{
 		}
 		if(temp == null) return;
 		prev.next = temp.next;
-	}	
+	}
 	// Linked List Deletion Ends
 
 	// Finding the length of linked list
 	// iterative
-	
+
 	public int LinkedListLenIterative(){
 		int count = 0;
 		Node temp = head;
@@ -90,14 +89,47 @@ public class LinkedList{
 		if(node == null) return 0;
 		else return 1 + linkedListLenRecursive(node.next);
 	}
+
+	// swap a linkedlist
+	public void swapLinkedList(int a , int b){
+		// if a and b are same data
+		if(a == b) return;
+		Node tempx = head, prev_x = null, tempy = head, prev_y = null;
+		while(tempx != null && tempx.data != a){
+			prev_x = tempx;
+			tempx = tempx.next;
+		}
+		while(tempy != null && tempy.data != b){
+			prev_y = tempy;
+			tempy = tempy.next;
+		}
+
+		if(tempy == null || tempx == null){
+			return;
+		}
+		// if x is not the head
+		if(prev_x != null){
+			prev_x.next = tempy;
+		}
+		else head = tempy;
+
+		// if y is not the head
+		if(prev_y != null){
+			prev_y.next = tempx;
+		}
+		else head = tempx;
+		Node temp = tempx.next;
+		tempx.next = tempy.next;
+		tempy.next = temp;
+	}
 	public void printList(){
 		Node temp = head;
 		while(temp != null){
 			System.out.println(temp.data);
-			temp = temp.next;	
+			temp = temp.next;
 		}
 	}
-	
+
 	public static void main(String args[]){
 		LinkedList llist = new LinkedList();
 		llist.head = new Node(1);
@@ -126,5 +158,8 @@ public class LinkedList{
 		System.out.println("Length of linked list is = "+ count);
 		count = llist.linkedListLenRecursive(llist.head);
 		System.out.println("Lenght of the linked list is = " + count);
+		System.out.println("*************Swapping the numbers 0 and 5*************");
+		llist.swapLinkedList(0,5);
+		llist.printList();
 	}
 }
