@@ -8,6 +8,21 @@ public class LinkedList{
 			next = null;
 		}
 	}
+	
+	//Linked List Insertion Starts
+	
+	//Insertion in beginning
+	
+	public void insertAtBeg(int d){
+		Node temp = new Node(d);
+		temp.next = head;
+		head= temp;
+	}
+	//Insertion in the middle
+
+	//Insertion in the end
+	
+	//Linked List Insertion Ends
 	public void printList(){
 		Node temp = head;
 		while(temp != null){
@@ -24,6 +39,9 @@ public class LinkedList{
 		llist.head.next = second;
 		second.next = third;
 		third.next = null;
+		llist.printList();
+		System.out.println("******Inserting in the beginnning******");
+		llist.insertAtBeg(0);
 		llist.printList();
 	}
 }
