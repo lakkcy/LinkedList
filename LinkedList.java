@@ -19,13 +19,23 @@ public class LinkedList{
 		head= temp;
 	}
 	//Insertion in the middle
-
-	//Insertion in the end
 	
 	public void insertInMiddle(Node prev_node, int d){
 		Node temp = new Node(d);
 		temp.next = prev_node.next;
 		prev_node.next = temp;
+	}
+
+	// Insert at the end
+	
+	public void insertAtEnd(int d){
+		Node temp = head;
+		Node temp2 = new Node(d);
+		while(temp.next != null){
+			temp = temp.next;
+		}
+		temp.next = temp2;
+		temp2.next = null;
 	}
 	//Linked List Insertion Ends
 	public void printList(){
@@ -51,5 +61,9 @@ public class LinkedList{
 		System.out.println("******Inserting in the middle*********");
 		llist.insertInMiddle(second, 20);
 		llist.printList();
+		System.out.println("******** Inserting at the end*********");
+		llist.insertAtEnd(5);
+		llist.printList();
+		
 	}
 }
