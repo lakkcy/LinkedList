@@ -1,5 +1,6 @@
 public class LinkedList{
 	Node head;
+	Node head1;
 	static class Node{
 		int data;
 		Node next;
@@ -122,12 +123,58 @@ public class LinkedList{
 		tempx.next = tempy.next;
 		tempy.next = temp;
 	}
-	public void printList(){
-		Node temp = head;
+
+	public void swapping(int a, int b){
+
+		if(a == b) return;
+
+		Node prevx = null, currx = head, prevy = null, curry = head;
+
+		while(currx.data != a && currx != null){
+			prevx = currx;
+			currx = currx.next;
+		}
+
+		while(curry.data != b && curry != null){
+			prevy = curry;
+			curry = curry.next;
+		}
+
+		if(curry == null || currx == null){
+			return;
+		}
+		// if a is not at head;
+		if(prevx != null){
+			prevx.next = curry;
+		}
+		else head = curry;
+		if(prevy != null){
+			prevy.next = currx;
+		}
+		else head = currx;
+		Node temp = currx.next;
+		currx.next = curry.next;
+		curry.next = temp;
+	}
+
+	// Reverse a linked list
+	public void reverseLinkedList(){
+		Node prev = null, current = head, next = null;
+		while(current != null){
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		head = prev;
+	}
+	public void printList(Node node){
+		Node temp = node;
 		while(temp != null){
-			System.out.println(temp.data);
+			System.out.print(temp.data + "->");
 			temp = temp.next;
 		}
+		System.out.println();
 	}
 
 	public static void main(String args[]){
@@ -135,31 +182,60 @@ public class LinkedList{
 		llist.head = new Node(1);
 		Node second = new Node(2);
 		Node third = new Node(3);
+		llist.head1 = new Node(100);
+		Node ll2 = new Node(101);
+		Node ll3 = new Node(102);
+		Node ll4 = new Node(103);
+		Node ll5 = new Node(104);
+		Node ll6 = new Node(105);
+		Node ll7 = new Node(106);
+		llist.head1.next = ll2;
+		ll2.next = ll3;
+		ll3.next = ll4;
+		ll4.next = ll5;
+		ll5.next = ll6;
+		ll6.next = ll7;
+		ll7.next = null;
 		llist.head.next = second;
 		second.next = third;
 		third.next = null;
-		llist.printList();
+		llist.printList(llist.head);
 		System.out.println("******Inserting in the beginnning******");
 		llist.insertAtBeg(0);
-		llist.printList();
+		llist.printList(llist.head);
 		System.out.println("******Inserting in the middle*********");
 		llist.insertInMiddle(second, 20);
-		llist.printList();
+		llist.printList(llist.head);
 		System.out.println("******** Inserting at the end*********");
 		llist.insertAtEnd(5);
-		llist.printList();
+		llist.insertAtEnd(6);
+		llist.insertAtEnd(7);
+		llist.insertAtEnd(8);
+		llist.insertAtEnd(9);
+		llist.insertAtEnd(10);
+		llist.insertAtEnd(11);
+		llist.insertAtEnd(12);
+		llist.insertAtEnd(13);
+		llist.insertAtEnd(14);
+		llist.printList(llist.head);
 		System.out.println("*********Deleting a Key************");
 		llist.deleteAKey(3);
-		llist.printList();
+		llist.printList(llist.head);
 		System.out.println("*********Deleting at a position**********");
 		llist.deleteAtPosition(2);
-		llist.printList();
+		llist.printList(llist.head);
 		int count = llist.LinkedListLenIterative();
 		System.out.println("Length of linked list is = "+ count);
 		count = llist.linkedListLenRecursive(llist.head);
 		System.out.println("Lenght of the linked list is = " + count);
 		System.out.println("*************Swapping the numbers 0 and 5*************");
 		llist.swapLinkedList(0,5);
-		llist.printList();
+		llist.swapping(5,14);
+		llist.printList(llist.head);
+		System.out.println("************Reversing a Linked List***************");
+		llist.reverseLinkedList();
+		llist.printList(llist.head);
+		System.out.println("**************Printing out second linked list***************");
+		llist.printList(llist.head1);
 	}
 }
